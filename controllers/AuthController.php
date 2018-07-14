@@ -19,7 +19,7 @@ class AuthController extends Controller {
             $userSessionId = hash('sha256', uniqid());
             setcookie('MYUSER', $userSessionId);
             User::saveUserSession($user, $userSessionId);
-            $this->render('index.tmpl');
+            $this->render('cabinet.tmpl');
         }
     }
 
@@ -31,7 +31,11 @@ class AuthController extends Controller {
         return (null != User::getCurrentUser());
     }
 
+    /**
+     *Выход: удаляем куку и перенаправляем на индекс
+     */
     public static function actionLogout() {
-        session_destroy();
+        setcookie('MYUSER', '', time()-10);
+        header('Location: /index');
     }
 }

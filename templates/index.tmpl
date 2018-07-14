@@ -9,6 +9,10 @@
 <body>
 
 <a href="/auth/index">Войти</a>
-<a href="/auth/logout">Выйти</a>
+
+{% for key, param in params %}
+    <h1>{{ param.title }}</h1>
+    <p>{{ param.content }}</p>
+{% endfor %}
 </body>
 </html>

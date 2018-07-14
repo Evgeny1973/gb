@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июн 10 2018 г., 13:13
+-- Время создания: Июл 14 2018 г., 14:05
 -- Версия сервера: 5.7.20
 -- Версия PHP: 7.2.0
 
@@ -80,6 +80,24 @@ CREATE TABLE `user_sessions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Дамп данных таблицы `user_sessions`
+--
+
+INSERT INTO `user_sessions` (`id`, `user_id`, `hash`) VALUES
+(1, 1, 'f9bdac25076e20d21b4bf5c2e057f40707f9c1c62b624efe356f6fb15be7f1c5'),
+(2, 1, 'e78c43816ddb353a204c87d65cdf0bc78f11e59d9b7a4a36a0fb4f9655ca26de'),
+(3, 1, 'd237ccbb6ffbc42152b10db39fab912f83398b0a8153774d4128b77d5dd2fbb9'),
+(4, 1, 'd81d6d72adca516ee35131b032433f5bad5af069b657f2fd82ed6211ec0f417d'),
+(5, 1, 'fd6c4cc1f6524e95a73c09233f989fd915e30ea32ff166e6c5b344d503ce912e'),
+(6, 1, '074304389069eea2bc070f964299d8608d258c893c7eb0e6b4623fa952c63070'),
+(7, 1, '93588563b597a998f0f52d7e5b445db8c3654fb5cbb0931e161c611ccab45130'),
+(8, 1, '436aa27b1dbd285dd9171bab4d40e68071e514330fa72d3822cdfa8f71938f2b'),
+(9, 1, '278d577107178d1aabe2c592e21b9d6e8c62058d3587cea16da4a523e611b4a4'),
+(10, 1, 'a5dc959bbe49a4e6d826f00426585f08904e435c1e6f4993c672620ad17be1da'),
+(11, 1, 'dd8534f38a7783e5b5475a33d3035b28201791bf0100c5b5a8d63f5c1969cd1d'),
+(12, 1, 'd749147b97f6637672f58c3d4327015506326a55559bdea320235c0ec6d5f4d9');
+
+--
 -- Индексы сохранённых таблиц
 --
 
@@ -121,7 +139,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `user_sessions`
 --
 ALTER TABLE `user_sessions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

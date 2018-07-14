@@ -21,7 +21,7 @@ class BlogController extends Controller {
     public function actionShow($id = 1) {
         $blogModel = new Blog;
         $blog = $blogModel->getBlog($id);
-        $this->render('blogs.tmpl', $blog);
+        $this->render('blog.tmpl', $blog);
 
     }
 }

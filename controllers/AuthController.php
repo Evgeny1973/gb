@@ -8,7 +8,11 @@ use models\User;
 class AuthController extends Controller {
 
     public function actionIndex() {
-        $this->render('login.tmpl');
+        if (self::actionCheck()) {
+            $this->render('cabinet.tmpl');
+        } else {
+            $this->render('login.tmpl');
+        }
     }
 
     public function actionLogin() {
@@ -17,7 +21,7 @@ class AuthController extends Controller {
             $this->render('login.tmpl');
         } else {
             $userSessionId = hash('sha256', uniqid());
-            setcookie('MYUSER', $userSessionId);
+            setcookie('MYUSER', $userSessionId, time() + 60 * 60 * 24 * 30, '/');
             User::saveUserSession($user, $userSessionId);
             $this->render('cabinet.tmpl');
         }
@@ -27,7 +31,7 @@ class AuthController extends Controller {
      * Если null, то пользователь не залогинен
      * @return bool
      */
-    public static function actionCheck() {
+    public static function actionCheck(): bool {
         return (null != User::getCurrentUser());
     }
 
@@ -35,7 +39,7 @@ class AuthController extends Controller {
      *Выход: удаляем куку и перенаправляем на индекс
      */
     public static function actionLogout() {
-        setcookie('MYUSER', '', time()-10);
+        setcookie('MYUSER', '', time() - 10, '/');
         header('Location: /index');
     }
 }

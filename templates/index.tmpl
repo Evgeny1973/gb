@@ -8,10 +8,10 @@
 </head>
 <body>
 
-<a href="/auth/index">Войти</a>
+<a href="/auth/index">Личный кабинет</a>
 
 {% for key, param in params %}
-    <h1>{{ param.title }}</h1>
+    <h1><a href="/index/show?id={{ key+1 }}">{{ param.title }}</a></h1>
     <p>{{ param.content }}</p>
 {% endfor %}
 </body>

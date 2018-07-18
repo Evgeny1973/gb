@@ -10,11 +10,22 @@ class Request {
     protected $controller = 'index';
     protected $action = 'index';
     protected $controllerNamespace = 'controllers';
+    protected $inputArr = [
+        'get' => [],
+        'post' => [],
+    ];
 
     public function init() {
 
         $url = $_SERVER['REQUEST_URI'];
-        $path = explode('/', $url);
+        if ($cleanUrl = stristr($url, '?', true)) {
+            $path = explode('/', $cleanUrl);
+        } else {
+            $path = explode('/', $url);
+        }
+        $this->inputArr['get'] = $_GET;
+        $this->inputArr['post'] = $_POST;
+
         if (3 == count($path)) {
             $this->controller = $path[1];
             $this->action = $path[2];
@@ -29,11 +40,31 @@ class Request {
         if (class_exists($classController)) {
             $instanceController = new $classController;
             if (method_exists($instanceController, $action)) {
-                call_user_func_array([$instanceController, $action], []);
+                call_user_func_array([$instanceController, $action], [$this]);
             } else {
                 throw new Error404('Метод ' . $action . ' не существует');
             }
         }
+    }
+
+    public function get($key = null) {
+        if ((empty($key))) {
+            return $this->inputArr['get'];
+        }
+        if (isset($this->inputArr['get'][$key])) {
+            return $this->inputArr['get'][$key];
+        }
+        return null;
+    }
+
+    public function post($key = null) {
+        if ((empty($key))) {
+            return $this->inputArr['post'];
+        }
+        if (isset($this->inputArr['post'][$key])) {
+            return $this->inputArr['post'][$key];
+        }
+        return null;
     }
 
 }

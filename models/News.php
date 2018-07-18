@@ -4,12 +4,23 @@ namespace models;
 
 
 use components\Db;
+use components\Model;
 
-class News extends Db {
+class News extends Model {
 
-    public function getAllNews() {
-        $db = Db::instance();
-        $sql = 'SELECT * FROM news';
-        return $db->query($sql);
-    }
+   protected $table = 'news';
+
+    protected $fields = [
+        'id',
+        'title',
+        'content',
+        'author',
+    ];
+
+    protected $rules = [
+        'id' => 'int',
+        'title' => 'string',
+        'content' => 'string',
+        'author' => 'string',
+    ];
 }

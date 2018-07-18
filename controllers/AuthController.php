@@ -12,7 +12,6 @@ class AuthController extends Controller {
             $this->render('cabinet.tmpl');
         } else {
             $this->render('login.tmpl');
-
         }
     }
 

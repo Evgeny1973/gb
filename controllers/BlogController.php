@@ -18,8 +18,23 @@ class BlogController extends Controller {
         $this->render('blogs.tmpl', $blogs);
     }
 
-    public function actionAdd(Request $request) {
+    public function actionAdd(Request $request){
+        if (empty($request->post())){
+            $this->render('addblog.tmpl');
+        }else{
+            $data = $request->post();
+            $blogModel = new Blog();
+            $blogModel->create($data);
+            header('Location: /blog/index');
+        }
+    }
 
+    public function actionEdit(Request $request){
+        echo 'Edit';
+    }
+
+    public function actionDelete(Request $request){
+        echo 'Delete';
     }
 
     public function actionShow(Request $request) {

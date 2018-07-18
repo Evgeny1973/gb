@@ -12,7 +12,7 @@ class Model {
      */
     public function getAll() {
         $db = Db::instance();
-        $sql = 'SELECT * FROM ' . $this->table;
+        $sql = 'SELECT * FROM ' . $this->table . ' ORDER BY id DESC';
         return $db->query($sql) ?? null;
     }
 
@@ -33,7 +33,7 @@ class Model {
      * @throws \Exception
      */
     public function create($fields) {
-        if(!$this->validate($fielda, $this->rules)) {
+        if (!$this->validate($fields, $this->rules)) {
             return false;
         }
         $cols = [];
@@ -46,6 +46,7 @@ class Model {
             $values[':' . $name] = $value;
         }
         $sql = 'INSERT INTO ' . $this->table . ' (' . implode(', ', $cols) . ') VALUES (' . implode(', ', array_keys($values)) . ')';
+        //echo $sql;die;
         $db = Db::instance();
         return $db->execute($sql, $values);
     }
@@ -57,7 +58,7 @@ class Model {
      * @throws \Exception
      */
     public function update($id, $fields) {
-        if(!$this->validate($fields, $this->rules)) {
+        if (!$this->validate($fields, $this->rules)) {
             return false;
         }
         $values = [];
@@ -91,7 +92,7 @@ class Model {
      * @return bool
      * @throws \Exception
      */
-    public function validate($values, array $rules): bool {
+    public function validate($values, array $rules) {
         if (!empty(array_diff_key($values, $rules))) {
             return false;
         }
@@ -114,5 +115,6 @@ class Model {
                     throw new \Exception('Неизвестное правило валидации');
             }
         }
+        return true;
     }
 }

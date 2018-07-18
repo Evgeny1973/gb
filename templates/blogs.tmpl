@@ -11,8 +11,11 @@
 <body>
 
 {% for key, param in params %}
-    <h1><a href="/blog/show?id={{ key+1 }}">{{ param.title }}</a></h1>
+    <h3><a href="/blog/show?id={{ key+1 }}">{{ param.title }}</a></h3>
     <p>{{ param.content }}</p>
+    <a href="/blog/edit?id={{ key+1 }}">Редактировать</a> |
+    <a href="/blog/delete?id={{ key+1 }}">Удалить</a><br>
+    <hr>
 {% endfor %}
 
 

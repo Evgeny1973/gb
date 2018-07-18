@@ -17,4 +17,5 @@ class CabinetController extends Controller {
             $this->render('login.tmpl');
         }
     }
+
 }

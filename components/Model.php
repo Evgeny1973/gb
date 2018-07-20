@@ -12,7 +12,7 @@ class Model {
      */
     public function getAll() {
         $db = Db::instance();
-        $sql = 'SELECT * FROM ' . $this->table . ' ORDER BY id DESC';
+        $sql = 'SELECT * FROM ' . $this->table;
         return $db->query($sql) ?? null;
     }
 

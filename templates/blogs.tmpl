@@ -9,7 +9,7 @@
     <title>Блоги</title>
 </head>
 <body>
-
+<a href="/cabinet">Назад в личный кабинет</a>
 {% for key, param in params %}
     <h3><a href="/blog/show?id={{ key+1 }}">{{ param.title }}</a></h3>
     <p>{{ param.content }}</p>
